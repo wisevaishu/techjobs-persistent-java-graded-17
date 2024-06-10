@@ -34,14 +34,13 @@ public class EmployerController {
 
         employerRepository.save(newEmployer);
 
-        return "redirect:/employers";
+        return "redirect:/employers/";
 
     }
 
     @GetMapping("view/{employerId}") // live page
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
         //retrieve employer entity from the database based on its id
-        //Optional optEmployer = null;
         Optional<Employer> optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
@@ -50,7 +49,6 @@ public class EmployerController {
         } else {
             return "redirect:../";
         }
-
     }
 
     @GetMapping("/")

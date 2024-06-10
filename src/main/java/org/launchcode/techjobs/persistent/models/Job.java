@@ -19,12 +19,11 @@ public class Job extends AbstractEntity {
     //private String employer;
     //this means that the employer field in the Job entity determines the foreign key
     // mapping in the database table for the relationship.
+    @JoinColumn(name = "employer_id")
     private Employer employer;
 
     @ManyToMany
-    private List<Skill> skills  = new ArrayList<>();;
-
-    //private String skills;
+    private List<Skill> skills  = new ArrayList<>();
 
     public Job() {
     }
@@ -53,5 +52,7 @@ public class Job extends AbstractEntity {
     public void setSkills(List<Skill> skills) {
         this.skills = skills;
     }
+
+
 
 }

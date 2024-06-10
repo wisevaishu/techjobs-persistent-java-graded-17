@@ -18,9 +18,11 @@ public class Employer extends AbstractEntity {
     @Size(max = 100, message = "Location must be less than or equal to 100 characters")
     private String location;
 
-    @OneToMany(mappedBy = "employer")
+
     //this means that the employer field in the Job entity determines the foreign key
     // mapping in the database table for the relationship.
+    //@OneToMany(mappedBy = "employer")
+    @OneToMany
     @JoinColumn(name = "employer_id") //foreign key
     private List<Job> jobs = new ArrayList<>();
 
@@ -32,5 +34,13 @@ public class Employer extends AbstractEntity {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
     }
 }

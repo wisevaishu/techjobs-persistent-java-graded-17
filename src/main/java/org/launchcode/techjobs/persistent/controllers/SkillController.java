@@ -39,22 +39,22 @@ public class SkillController {
             return "skills/add";
         }
         skillRepository.save(newSkill);
-        return "redirect:/skills";
+        return "redirect:/skills/";
     }
 
-    @GetMapping("view/{skillId}") // live page
-    public String displayViewEmployer(Model model, @PathVariable int skillId) {
-
-        Optional<Skill> optSkill = skillRepository.findById(skillId);
-        if (optSkill.isPresent()) {
-            Skill skill = (Skill) optSkill.get();
-            model.addAttribute("skill", skill);
-            return "skills/view";
-        } else {
-            return "redirect:../";
-        }
-
-    }
+//    @GetMapping("view/{skillId}") // live page
+//    public String displayViewEmployer(Model model, @PathVariable int skillId) {
+//
+//        Optional<Skill> optSkill = skillRepository.findById(skillId);
+//        if (optSkill.isPresent()) {
+//            Skill skill = (Skill) optSkill.get();
+//            model.addAttribute("skill", skill);
+//            return "skills/view";
+//        } else {
+//            return "redirect:../";
+//        }
+//
+//    }
 
     @GetMapping("view/{skillId}") // live page
     public String displayViewSkill(Model model, @PathVariable int skillId) {
