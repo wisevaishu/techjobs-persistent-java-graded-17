@@ -53,7 +53,7 @@ public class EmployerController {
 
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String index(Model model){
         model.addAttribute("employers", employerRepository.findAll());
         return "employers/index";

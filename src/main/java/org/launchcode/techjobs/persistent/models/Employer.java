@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,8 @@ public class Employer extends AbstractEntity {
     @OneToMany(mappedBy = "employer")
     //this means that the employer field in the Job entity determines the foreign key
     // mapping in the database table for the relationship.
-    //@JoinColumn(name = "employer_id") //foreign key
-    private List<Job> jobs;
+    @JoinColumn(name = "employer_id") //foreign key
+    private List<Job> jobs = new ArrayList<>();
 
     public Employer() {} //Required for hibernate to create an object
 

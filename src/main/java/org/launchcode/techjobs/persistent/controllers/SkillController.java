@@ -20,7 +20,7 @@ public class SkillController {
     @Autowired //automatic dependency injection
     private SkillRepository skillRepository;
 
-   @GetMapping
+   @GetMapping("/")
     public String index(Model model){
         model.addAttribute("skills", skillRepository.findAll());
         return "skills/index";
@@ -54,5 +54,17 @@ public class SkillController {
             return "redirect:../";
         }
 
+    }
+
+    @GetMapping("view/{skillId}") // live page
+    public String displayViewSkill(Model model, @PathVariable int skillId) {
+        Optional<Skill> optSkill = skillRepository.findById(skillId);
+        if (optSkill.isPresent()) {
+            Skill skill = optSkill.get();
+            model.addAttribute("skill", skill);
+            return "skills/view"; // Assuming "skills/view" is the correct view name
+        } else {
+            return "redirect:/skills"; // Redirect to the skills index if the skill is not found
+        }
     }
 }
